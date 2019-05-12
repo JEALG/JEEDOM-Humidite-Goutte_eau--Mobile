@@ -1,40 +1,43 @@
-<div style="width:80px;min-height:50px;" class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" title="#collectDate#">
-<!-- Info 
-	Basé sur les widget de 	: 
-	Mise à jour 			: JAG 20190425 : correction Bug position image merci à Salvialf 
--->
-  <div class="row">
-    	<div style="width:80px;height:5px;"></div>
-    	<strong class='cmdName center-block col-xs-12 small' style="font-weight: bold;font-size : 10px; #hideCmdName#;" title="#name#">#name#</strong>
-    	<div id="iconCmd#id#" class='col-xs-5' style="height:40px;position: relative;" id="tailleCmd#id#">
-	    	<div style="width: 26px;height: 40px; position: absolute; z-index: 1; background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeau.png') no-repeat;background-size:26px 40px;" id="recipient#id#"></div>
-    		<div style="width: 26px;height: 40px; position: relative;background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeaumask.png') no-repeat;background-size:26px 40px;" id="recipientmask#id#"></div>
-		</div>
-		<div class="col-xs-4">
-			<div class="row">
-      			<div class=' center-block'>
-        			<span class="humidite_state" style="font-size: 1em;font-weight: bold"></span><br/>
-      			</div>
-	   		</div>
-   		</div>
-          	<!-- Historique -->
-    		<div class="cmdStats #hide_history# col-xs-12" style="#displayHistory# font-size : 10px;margin-top:0px;">
-    			<span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-			</div>
-	</div>
-	<script>
-      	jeedom.cmd.update['#id#'] = function(_options){
-          	var State = parseFloat(_options.display_value);
-          	var Statemax = #maxValue#;
-  			var height = parseInt( 40*(State/Statemax) );
-			if( height > 40) { height = 40; }
-    			topPosition = 40 - height;          
-        		$('#recipient#id#').css({'height':height+'px','top':topPosition+'px','background-position':'0 -'+topPosition+'px'});	            
-				$('.cmd[data-cmd_id=#id#] .humidite_state').empty().append(_options.display_value+'#unite#');  
-        	
-		     		$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
-          			
-		}
-		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});    
-	</script>
+<div style="width:100px;min-height:50px;" class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" title="#collectDate#">
+    <!-- Info 
+        Basé sur les widget de 	: 
+        Mise à jour 			: JAG 20190425 : Correction Bug position image merci à Salvialf 
+        Mise à jour 			: JAG 20190512 : Mise à jour de la position de la légende 
+    -->
+    <div class="row">
+        <div style="width:70px;height:5px;"></div>
+        <strong class='cmdName center-block col-xs-12 small' style="font-weight: bold;font-size : 10px; #hideCmdName#;" title="#name#">#name#</strong>
+        <div id="iconCmd#id#" class='col-xs-5' style="height:40px;position: relative;" id="tailleCmd#id#">
+            <div style="width: 26px;height: 40px; position: absolute; z-index: 1; background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeau.png') no-repeat;background-size:26px 40px;" id="recipient#id#"></div>
+            <div style="width: 26px;height: 40px; position: relative;background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeaumask.png') no-repeat;background-size:26px 40px;" id="recipientmask#id#"></div>
+        </div>
+        <div class="col-xs-5">
+            <div class="row">
+                <div class=' center-block'>
+                    <span class="humidite_state" style="font-size: 1em;font-weight: bold"></span>
+                    <div class="#hide_history#">
+                        <span style="margin-top : 10px;line-height:10px;font-size: 0.5em;display: inline-block;text-align: justify;#displayHistory#">
+                            <span title='Min' class='tooltips left'>Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
+                            <span title='Moyenne' class='tooltips'>Moy : </span><span style="float:right;">#averageHistoryValue# #unite#</span><br/>
+                            <span title='Max' class='tooltips'>Max : </span><span style="float:right;">#maxHistoryValue# #unite#</span><br/>
+                            <i class="#tendance#"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        jeedom.cmd.update['#id#'] = function(_options){
+            var State = parseFloat(_options.display_value);
+            var Statemax = #maxValue#;
+            var height = parseInt( 40*(State/Statemax) );
+            if( height > 40) { height = 40; }
+            topPosition = 40 - height;          
+            $('#recipient#id#').css({'height':height+'px','top':topPosition+'px','background-position':'0 -'+topPosition+'px'});	            
+            $('.cmd[data-cmd_id=#id#] .humidite_state').empty().append(_options.display_value+' ' +'#unite#');  
+            $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);		
+        }
+        jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});    
+    </script>
 </div>
