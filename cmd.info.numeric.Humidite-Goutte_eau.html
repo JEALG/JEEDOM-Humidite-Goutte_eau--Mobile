@@ -1,24 +1,25 @@
-<div style="width:100px;min-height:50px;" class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" title="#collectDate#">
+<div style="width:100px;min-height:50px;" class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" title="#collectDate#" data-eqLogic_id="#eqLogic_id#" data-eqLogic_id="#eqLogic_id#">
     <!-- Info 
         Basé sur les widget de 	: 
-        Mise à jour 			: JAG 20190512 : Mise à jour de la position de la légende 
+        Mise à jour 			: JAG 20190601 : Correction Bug colonne Widget
     -->
+    <div class="cmdName #hide_name#">#name_display#</div>
     <div class="row">
-        <div style="width:70px;height:5px;"></div>
-        <strong class='cmdName center-block col-xs-12 small' style="font-weight: bold;font-size : 10px; #hideCmdName#;" title="#name#">#name#</strong>
-        <div id="iconCmd#id#" class='col-xs-5' style="height:40px;position: relative;" id="tailleCmd#id#">
-            <div style="width: 26px;height: 40px; position: absolute; z-index: 1; background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeau.png') no-repeat;background-size:26px 40px;" id="recipient#id#"></div>
-            <div style="width: 26px;height: 40px; position: relative;background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeaumask.png') no-repeat;background-size:26px 40px;" id="recipientmask#id#"></div>
+        <div id="iconCmd#id#" class='col-xs-5' style="height:40px;position: relative;">
+            <div style="width: 26px;height: 40px; position: absolute;z-index: 1; background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeau.png') no-repeat;background-size:26px 40px;" id="recipient#id#">
+            </div>
+            <div style="width: 26px;height: 40px; position: absolute;background: url('plugins/widget/core/template/mobile/cmd.info.numeric.Humidite-Goutte_eau/goutteeaumask.png') no-repeat;background-size:26px 40px;" id="recipientmask#id#">
+            </div>
         </div>
         <div class="col-xs-5">
             <div class="row">
-                <div class=' center-block'>
-                    <span class="humidite_state" style="font-size: 1em;font-weight: bold"></span>
+                <div class="center-block" style="top: 0px;float: left;position: relative; width: 60px; height: 80px;">
+                    <span class="value#id#" style="font-size: 1em;font-weight: bold"></span>
                     <div class="#hide_history#">
-                        <span style="margin-top : 10px;line-height:10px;font-size: 0.5em;display: inline-block;text-align: justify;#displayHistory#">
-                            <span title='Min' class='tooltips left'>Min : </span><span style="float:right;">#minHistoryValue# #unite#</span><br/>
-                            <span title='Moy' class='tooltips'>Moy : </span><span style="float:right;">#averageHistoryValue# #unite#</span><br/>
-                            <span title='Max' class='tooltips'>Max : </span><span style="float:right;">#maxHistoryValue# #unite#</span><br/>
+                        <span style="font-size: 0.5em;display: inline-block;text-align: justify;#displayHistory#">
+                            <span title="Min" style="float:left;">Min : #minHistoryValue# #unite#</span><br/>
+                            <span title="Moy" style="float:left;">Moy : #averageHistoryValue# #unite#</span><br/>
+                            <span title="Max" style="float:left;">Max : #maxHistoryValue# #unite#</span><br/>
                             <i class="#tendance#"></i>
                         </span>
                     </div>
@@ -34,7 +35,7 @@
             if( height > 40) { height = 40; }
             topPosition = 40 - height;          
             $('#recipient#id#').css({'height':height+'px','top':topPosition+'px','background-position':'0 -'+topPosition+'px'});	            
-            $('.cmd[data-cmd_id=#id#] .humidite_state').empty().append(_options.display_value+' ' +'#unite#');  
+            $('.cmd[data-cmd_id=#id#] .value#id#').empty().append(_options.display_value+' ' +'#unite#');  
             $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);		
         }
         jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});    
