@@ -2,7 +2,7 @@
     <!-- Info Widget
         Widget de           : JAG
         Widget pour le Core : V4
-        Mise à jour         : JAG 20200502 => Ajout Version Core
+        Mise à jour         : JAG 20200508 => Correction nom variable
 	-->
     <div class="cmdName #hide_name#">#name_display#</div>
     <div id="iconCmd#id#" class='col-xs-5' style="height:40px;position: relative;">
@@ -30,7 +30,7 @@
 <script>
     jeedom.cmd.update['#id#'] = function(_options) {
         var State = parseFloat(_options.display_value);
-        var Statemax = #maxValue #;
+        var Statemax = #maxValue#;
         var height = parseInt(40 * (State / Statemax));
         if (height > 40) {
             height = 40;
